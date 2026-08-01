@@ -1,3 +1,7 @@
 [alias]
-    uncommit = "!f() { git rev-parse --verify HEAD^ >/dev/null && set -C && git log -1 --format=format:%B HEAD > zz_cm.txt && git reset HEAD^; }; f"
-    recommit = "!f() { git commit -F zz_cm.txt \"$@\" && rm -- zz_cm.txt; }; f"
+	commitall = "!f() { git add -A && git commit \"$@\"; }; f"
+	uncommit = "!f() { git rev-parse --verify HEAD^ >/dev/null && set -C && git log -1 --format=format:%B HEAD > zz_cm.txt && git reset HEAD^; }; f"
+	recommit = "!f() { git commit -F zz_cm.txt \"$@\" && rm -- zz_cm.txt; }; f"
+	recommitall = "!f() { git add -A && git recommit \"$@\"; }; f"
+	squash = commit --amend --no-edit
+	squashall = "!f() { git add -A && git squash \"$@\"; }; f"
